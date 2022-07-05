@@ -10,7 +10,7 @@ d3.json(url).then(data => {
     var input_data = data["names"];
     console.log("got data input", input_data);
 
-    var select = d3.select('#selDataset')
+    var select = d3.select('#selDataset');
     
     // select.on('change', onChange)
     // .append('select')
@@ -25,7 +25,7 @@ d3.json(url).then(data => {
     function onChange() {
         selectValue = d3.select('select').property('value')
     };
-}
+});
 // 2. Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
 
 //   * Use `sample_values` as the values for the bar chart.

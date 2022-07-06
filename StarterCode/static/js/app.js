@@ -8,11 +8,13 @@ d3.json(url).then(data => {
 
     // Select Option
     var input_data = data["names"];
-    console.log("got data input", input_data);
+    console.log("select input", input_data);
 
     var select = d3.select('#selDataset');
     
-    // select.on('change', onChange)
+    select.on('change', onChange);
+    // select.on('change', demographicInfo);
+
     // .append('select')
     //   .attr('id','selDataset')
 
@@ -22,79 +24,113 @@ d3.json(url).then(data => {
     .append('option')
     .text(function (d) { return d; });
 
+    function findSampleData(data, id) {
+        alert('success');
+        console.log(data["samples"].id == id);
+        return data["samples"].id == id;
+     }
+
+
     function onChange() {
-        selectValue = d3.select('select').property('value')
+        var selectValue = d3.select('select').property('value');
+        // alert(selectValue);
+
+        // findSampleData = data => data.samples.id == id;
+
+        // filter() uses the custom function as its argument
+        // let youngSimpsons = simpsons.filter(selectYounger);
+
+        // var metaData = data["metadata"].id = selectValue;
+        // console.log("updated metadata", metaData);
+        var sampleData = data.filter(findSampleData(data, selectValue));
+
+        // let sampleData = data.sort(findSampleData());
+
+        console.log("updated sample data", sampleData);
+
+        // 2. Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
+
+        //   * Use `sample_values` as the values for the bar chart.
+
+        //   * Use `otu_ids` as the labels for the bar chart.
+
+        //   * Use `otu_labels` as the hovertext for the chart.
+
+        //   ![bar Chart](Images/hw01.png)
+
+        //     var data_2 = [{
+        //         type: 'bar',
+        //         x: data['sample_values'][0],
+        //         y: data['samples']['otu_ids'],
+        //         text: data['otu_labels'],
+        //         orientation: 'h'
+        //     }];
+        
+        //     Plotly.newPlot('bar', data_2);
+
+        //     // 3. Create a bubble chart that displays each sample.
+
+        //     //   * Use `otu_ids` for the x values.
+
+        //     //   * Use `sample_values` for the y values.
+
+        //     //   * Use `sample_values` for the marker size.
+
+        //     //   * Use `otu_ids` for the marker colors.
+
+        //     //   * Use `otu_labels` for the text values.
+
+        //     var trace1 = {
+        //         x: data['otu_ids'],
+        //         y: data['sample_values'],
+        //         mode: 'markers',
+        //         marker: {
+        //         size: data['sample_values'],
+        //         color: data['otu_ids'], 
+        //         }
+        //     };
+            
+        //     var data = [trace1];
+            
+        //     var layout = {
+        //         title: 'Marker Size',
+        //         showlegend: false,
+        //         height: 600,
+        //         width: 600
+        //     };
+
+        // }).catch(error => {
+        //     console.log("error fetching url", url);
+        // });
+        
+        //   Plotly.newPlot('bubble', data, layout);
+
+        // // ![Bubble Chart](Images/bubble_chart.png)
+
+        // // 4. Display the sample metadata, i.e., an individual's demographic information.
+
+        // print(data['metadata']);
+
+        // 5. Display each key-value pair from the metadata JSON object somewhere on the page.
+
+        // ![hw](Images/hw03.png)
+
+        // 6. Update all the plots when a new sample is selected. Additionally, you are welcome to create any layout that you would like for your dashboard. An example dashboard is shown below:
+
+        // ![hw](Images/hw02.png)
+
+
+
+
+
     };
+
+    function demographicInfo() {
+        selectValue = d3.select('select').property('value');
+        return data["samples"].id = selectValue;
+        alert(selectValue);
+    };
+   
 });
-// 2. Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
-
-//   * Use `sample_values` as the values for the bar chart.
-
-//   * Use `otu_ids` as the labels for the bar chart.
-
-//   * Use `otu_labels` as the hovertext for the chart.
-
-//   ![bar Chart](Images/hw01.png)
-
-//     var data_2 = [{
-//         type: 'bar',
-//         x: data['sample_values'][0],
-//         y: data['samples']['otu_ids'],
-//         text: data['otu_labels'],
-//         orientation: 'h'
-//     }];
-  
-//     Plotly.newPlot('bar', data_2);
-
-//     // 3. Create a bubble chart that displays each sample.
-
-//     //   * Use `otu_ids` for the x values.
-
-//     //   * Use `sample_values` for the y values.
-
-//     //   * Use `sample_values` for the marker size.
-
-//     //   * Use `otu_ids` for the marker colors.
-
-//     //   * Use `otu_labels` for the text values.
-
-//     var trace1 = {
-//         x: data['otu_ids'],
-//         y: data['sample_values'],
-//         mode: 'markers',
-//         marker: {
-//         size: data['sample_values'],
-//         color: data['otu_ids'], 
-//         }
-//     };
-    
-//     var data = [trace1];
-    
-//     var layout = {
-//         title: 'Marker Size',
-//         showlegend: false,
-//         height: 600,
-//         width: 600
-//     };
-
-// }).catch(error => {
-//     console.log("error fetching url", url);
-// });
-  
-//   Plotly.newPlot('bubble', data, layout);
-
-// // ![Bubble Chart](Images/bubble_chart.png)
-
-// // 4. Display the sample metadata, i.e., an individual's demographic information.
-
-// print(data['metadata']);
-
-// 5. Display each key-value pair from the metadata JSON object somewhere on the page.
-
-// ![hw](Images/hw03.png)
-
-// 6. Update all the plots when a new sample is selected. Additionally, you are welcome to create any layout that you would like for your dashboard. An example dashboard is shown below:
-
-// ![hw](Images/hw02.png)
 
 // 7. Deploy your app to a free static page hosting service, such as GitHub Pages. Submit the links to your deployment and your GitHub repo. Ensure that your repository has regular commits and a thorough README.md file

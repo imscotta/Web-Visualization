@@ -27,21 +27,31 @@
           <div class="panel-heading">
             <h3 class="panel-title">Demographic Info</h3>
           </div>
-          <div id="sample-metadata" class="panel-body"></div>
+          <div id="sample-metadata" class="panel-body">
+            <table>
+              <tr><td><b>Age </b></td><td id="age"></td></tr>
+              <tr><td><b>Type </b></td><td id="type"></td></tr>
+              <tr><td><b>Ethnicity</b></td><td id="ethnicity"></td></tr>
+              <tr><td><b>Gender </b></td><td id="gender"></td></tr>
+              <tr><td><b>Location </b></td><td id="location"></td></tr>
+              <tr><td><b>Wfreq </b></td><td id="freq"></td></tr>
+              <tr><td><b>Sample </b></td><td id="sample"></td></tr>
+              </table>
+          </div>
         </div>
       </div>
       <div class="col-md-5">
         <div id="bar"></div>
       </div>
       <div class="col-md-5">
-        <div id="gauge"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
         <div id="bubble"></div>
       </div>
     </div>
+    <!-- <div class="row">
+      <div class="col-md-12">
+        <div id="bubble"></div>
+      </div>
+    </div> -->
   </div>
   
   <script src="https://d3js.org/d3.v5.min.js"></script>
